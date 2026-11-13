@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      contents: read
+      contents: write   # pushes ONLY the trimmed ATS fixtures to a side branch probe/fixtures-<run id>, never main or data
     env:
       UA: "JobRadar/1.0 (personal use)"
       GH_SLUG: ${{ inputs.greenhouse_slug }}
@@ -24,6 +24,23 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: probe each source once
         run: scripts/probe.sh probe-out
+      - name: publish trimmed ATS fixtures and field names to a side branch
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          for s in greenhouse ashby lever; do
+            mkdir -p "tests/fixtures/$s"
+            [ -f "probe-out/$s.json" ] && cp "probe-out/$s.json" "tests/fixtures/$s/probe.json"
+          done
+          mkdir -p docs/spikes/probe-fields
+          cp probe-out/*.fields.json probe-out/*.head.txt probe-out/summary.tsv docs/spikes/probe-fields/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "probe/fixtures-$RUN_ID"
+          git add -f tests/fixtures docs/spikes/probe-fields
+          git commit -m "probe: trimmed ATS fixtures and response field names from run $RUN_ID"
+          git push origin "probe/fixtures-$RUN_ID"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: probe-out

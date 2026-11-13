@@ -38,5 +38,7 @@ fetch nofluffjobs "https://nofluffjobs.com/api/search/posting?salaryCurrency=PLN
 shape nofluffjobs
 fetch justjoinit "https://api.justjoin.it/v2/user-panel/offers/by-cursor?currencies=pln&orderBy=DESC&sortBy=published&perPage=5"
 shape justjoinit
+fetch justjoinit_html "https://justjoin.it/job-offers/all-locations/backend"
+shape justjoinit_html
 
 column -t -s $'\t' "$summary"
