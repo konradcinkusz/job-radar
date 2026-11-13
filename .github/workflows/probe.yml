@@ -1,0 +1,31 @@
+name: probe
+# T-00.04: one real request per source from a hosted runner (SOURCES.md). Manual only, no secrets, no loops.
+# Public repository (D-24 amended): ATS bodies (employer postings) are kept trimmed to 5 postings; aggregator and portal
+# responses are NOT stored, only status, content type, size and JSON field names (redistribution terms, SOURCES §2).
+on:
+  workflow_dispatch:
+    inputs:
+      greenhouse_slug: { description: Greenhouse board token, default: stripe }
+      ashby_slug: { description: Ashby job board name, default: ramp }
+      lever_slug: { description: Lever site, default: spotify }
+permissions: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    env:
+      UA: "JobRadar/1.0 (personal use)"
+      GH_SLUG: ${{ inputs.greenhouse_slug }}
+      ASHBY_SLUG: ${{ inputs.ashby_slug }}
+      LEVER_SLUG: ${{ inputs.lever_slug }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: probe each source once
+        run: scripts/probe.sh probe-out
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: probe-out
+          path: probe-out
+          retention-days: 7
