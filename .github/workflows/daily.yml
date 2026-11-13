@@ -1,0 +1,57 @@
+name: daily
+# T-00.03 placeholder: five echo jobs, manual dispatch only (no schedule until the owner approves it, DECISIONS D-18).
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: fake or live
+        default: fake
+        type: choice
+        options: [fake, live]
+permissions: {}
+concurrency:
+  group: jobradar-daily
+  cancel-in-progress: false
+jobs:
+  scrape-api:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - run: echo "scrape-api placeholder (profile ${{ inputs.profile }})"
+  ingest:
+    needs: scrape-api
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - run: echo "ingest placeholder"
+  enrich:
+    needs: ingest
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - run: echo "enrich placeholder"
+  verify:
+    needs: enrich
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - run: echo "verify placeholder"
+  publish:
+    needs: verify
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - run: echo "publish placeholder"

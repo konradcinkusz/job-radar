@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><AssemblyName>jobradar</AssemblyName></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../JobRadar.ServiceDefaults/JobRadar.ServiceDefaults.csproj" />
+    <ProjectReference Include="../JobRadar.Core/JobRadar.Core.csproj" />
+    <ProjectReference Include="../JobRadar.Config/JobRadar.Config.csproj" />
+    <ProjectReference Include="../JobRadar.Sources/JobRadar.Sources.csproj" />
+    <ProjectReference Include="../JobRadar.Store/JobRadar.Store.csproj" />
+    <ProjectReference Include="../JobRadar.Agents/JobRadar.Agents.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+</Project>

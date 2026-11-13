@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../JobRadar.Core/JobRadar.Core.csproj" />
+    <PackageReference Include="YamlDotNet" />
+  </ItemGroup>
+</Project>

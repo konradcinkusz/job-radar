@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../../src/JobRadar.Agents/JobRadar.Agents.csproj" />
+    <ProjectReference Include="../../src/JobRadar.Config/JobRadar.Config.csproj" />
+    <ProjectReference Include="../../src/JobRadar.Sources/JobRadar.Sources.csproj" />
+    <ProjectReference Include="../../src/JobRadar.Store/JobRadar.Store.csproj" />
+    <PackageReference Include="xunit" />
+    <Using Include="Xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+  </ItemGroup>
+</Project>
