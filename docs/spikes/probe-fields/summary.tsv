@@ -1,0 +1,9 @@
+source	status	content_type	bytes	url
+greenhouse	200	application/json	6179608	https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true
+ashby	200	application/json; charset=utf-8	3246649	https://api.ashbyhq.com/posting-api/job-board/ramp?includeCompensation=true
+lever	200	application/json; charset=utf-8	43304	https://api.lever.co/v0/postings/spotify?mode=json&limit=5
+remotive	200	application/json; charset=utf-8	252750	https://remotive.com/api/remote-jobs?limit=5
+weworkremotely	200	application/rss+xml; charset=utf-8	2256241	https://weworkremotely.com/remote-jobs.rss
+nofluffjobs	200	application/json	3193020	https://nofluffjobs.com/api/search/posting?salaryCurrency=PLN&salaryPeriod=month&region=pl
+justjoinit	503	text/html	190	https://api.justjoin.it/v2/user-panel/offers/by-cursor?currencies=pln&orderBy=DESC&sortBy=published&perPage=5
+justjoinit_html	404	text/html; charset=utf-8	319955	https://justjoin.it/job-offers/all-locations/backend
