@@ -1,0 +1,3 @@
+# Companies the prefilter rejects (agencies, software houses). Grown by hand; names are normalised on load.
+# The Scorer may propose names in the daily summary but never edits this file (SPEC §6.6).
+companies: []

@@ -1,0 +1,25 @@
+threshold: 70
+require_score: false
+labels:
+  column_date: data
+  column_company: firma
+  column_role: rola
+  column_link: link
+  column_work_mode: tryb pracy
+  column_track: ścieżka
+  column_salary: widełki
+  column_status: status
+  column_code: kod
+  status_alive: alive
+  status_unverified: niezweryfikowana
+  empty_day: Brak nowych ofert.
+  not_evaluated: Nie ocenione
+  source_health: Zdrowie źródeł
+  median: mediana
+  alert: ALERT
+  not_run: nie uruchomiono
+  prefilter: Prefiltr
+  cost: Koszt
+  unknown: nieznany
+  batches: partii
+  credits: kredytów
