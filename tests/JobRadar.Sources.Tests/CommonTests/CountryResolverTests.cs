@@ -69,6 +69,14 @@ public sealed class CountryResolverTests
     }
 
     [Fact]
+    public void Trailing_ca_is_a_us_state_not_canada()
+    {
+        Assert.Null(CountryResolver.FromLocation("San Francisco, CA"));
+        Assert.Equal("CA", CountryResolver.FromLocation("Toronto, Canada"));
+        Assert.Equal("PL", CountryResolver.FromLocation("Warsaw, PL"));
+    }
+
+    [Fact]
     public void Lower_case_code_is_not_a_trailing_code()
     {
         Assert.Null(CountryResolver.FromLocation("Warsaw, pl"));

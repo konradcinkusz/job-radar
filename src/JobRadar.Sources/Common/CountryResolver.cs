@@ -48,7 +48,11 @@ public static class CountryResolver
         ("CA", new[] { "Canada" }),
     ];
 
-    private static readonly HashSet<string> Codes = Countries.Select(c => c.Code).ToHashSet(StringComparer.Ordinal);
+    // Codes accepted as a trailing segment. CA is left out: "San Francisco, CA" is the US state, and Canada resolves by its name.
+    private static readonly HashSet<string> TrailingCodes = Countries
+        .Select(c => c.Code)
+        .Where(code => code != "CA")
+        .ToHashSet(StringComparer.Ordinal);
 
     // Lower-cased name -> code. A duplicate name throws at type initialisation, so an ambiguous table cannot ship.
     private static readonly Dictionary<string, string> CodeByName = Countries
@@ -61,7 +65,8 @@ public static class CountryResolver
 
     /// <summary>
     /// Returns the upper-case alpha-2 code for <paramref name="location"/>, or null when neither a trailing code nor a country name
-    /// is present. Rule 1: the last comma-separated segment is exactly two upper-case ASCII letters and a known code. Rule 2: a country
+    /// is present. Rule 1: the last comma-separated segment is exactly two upper-case ASCII letters and a known code other than CA
+    /// (so <c>San Francisco, CA</c> is null). Rule 2: a country
     /// name is searched in the last segment first, then in earlier segments right to left; within a segment the name that appears
     /// last wins (<c>Poland/Germany</c> resolves to DE).
     /// </summary>
@@ -95,5 +100,5 @@ public static class CountryResolver
         segment.Length == 2
         && segment[0] is >= 'A' and <= 'Z'
         && segment[1] is >= 'A' and <= 'Z'
-        && Codes.Contains(segment);
+        && TrailingCodes.Contains(segment);
 }
