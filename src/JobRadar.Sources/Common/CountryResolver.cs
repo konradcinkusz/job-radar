@@ -62,7 +62,8 @@ public static class CountryResolver
     /// <summary>
     /// Returns the upper-case alpha-2 code for <paramref name="location"/>, or null when neither a trailing code nor a country name
     /// is present. Rule 1: the last comma-separated segment is exactly two upper-case ASCII letters and a known code. Rule 2: a country
-    /// name is searched in the last segment first, then in earlier segments right to left; the leftmost match in a segment wins.
+    /// name is searched in the last segment first, then in earlier segments right to left; within a segment the name that appears
+    /// last wins (<c>Poland/Germany</c> resolves to DE).
     /// </summary>
     public static string? FromLocation(string? location)
     {
@@ -80,10 +81,10 @@ public static class CountryResolver
 
         for (var i = segments.Length - 1; i >= 0; i--)
         {
-            var match = NamePattern.Match(segments[i].ToLowerInvariant());
-            if (match.Success)
+            var matches = NamePattern.Matches(segments[i].ToLowerInvariant());
+            if (matches.Count > 0)
             {
-                return CodeByName[match.Value];
+                return CodeByName[matches[^1].Value];
             }
         }
 

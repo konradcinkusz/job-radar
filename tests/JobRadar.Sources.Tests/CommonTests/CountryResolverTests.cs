@@ -54,6 +54,13 @@ public sealed class CountryResolverTests
     }
 
     [Fact]
+    public void Last_name_in_a_segment_wins()
+    {
+        // Both names are in one segment; the one that appears last (Germany) wins.
+        Assert.Equal("DE", CountryResolver.FromLocation("Poland/Germany"));
+    }
+
+    [Fact]
     public void Words_are_matched_whole()
     {
         Assert.Null(CountryResolver.FromLocation("Grenada"));
