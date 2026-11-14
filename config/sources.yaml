@@ -1,0 +1,11 @@
+sources:
+  greenhouse:     { enabled: true,  kind: ats,        stage: 0, expiry_by_absence: true,  companies: [] }   # the owner supplies slugs (T-01.15)
+  ashby:          { enabled: true,  kind: ats,        stage: 0, expiry_by_absence: true,  companies: [] }
+  remotive:       { enabled: true,  kind: aggregator, stage: 0, expiry_by_absence: false, attribution: "Remotive", delay_hours: 24 }
+  lever:          { enabled: false, kind: ats,        stage: 2, expiry_by_absence: true,  companies: [] }
+  nofluffjobs:    { enabled: false, kind: portal,     stage: 2, expiry_by_absence: false, repairable: true }
+  justjoinit:     { enabled: false, kind: portal,     stage: 2, expiry_by_absence: false, repairable: true }
+  adzuna:         { enabled: false, kind: aggregator, stage: 2, expiry_by_absence: false, countries: [es, pl] }
+  weworkremotely: { enabled: false, kind: aggregator, stage: 2, expiry_by_absence: false }
+  pracuj:         { enabled: false, kind: portal,     stage: 3, expiry_by_absence: false, browser: true, repairable: true }
+  infojobs:       { enabled: false, kind: portal,     stage: 3, expiry_by_absence: false, browser: true, repairable: true }

@@ -1,0 +1,21 @@
+version: 1
+countries: [AT, BE, BG, CH, CY, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IS, IT, LT, LU, LV, MT, NL, NO, PL, PT, RO, SE, SI, SK, UA, RS]
+max_office_days_per_week: 1
+office_exception_countries: [ES]
+office_penalty: 15
+excluded_languages: [de]            # German above basic level
+require_contract: b2b               # B2B through a sole proprietorship (JDG)
+direct_employers_only: true
+threshold: 70
+title_keywords: [ai, ml, llm, ".net", dotnet, "c#", backend, "back-end", "machine learning", "generative"]
+tracks:
+  A: { enabled: true,  label: "Mid AI Engineer",        seniority: [mid],    role_family: [ai_engineer] }
+  B: { enabled: true,  label: "Senior, .NET main stack", seniority: [senior], stack_main: [dotnet] }
+  C: { enabled: false, label: "undefined",              note: "owner defines (DECISIONS D-27)" }
+injection_patterns:                 # case-insensitive, matched on the normalised description
+  - "ignore (all |any )?(previous|prior|above) instructions"
+  - "zignoruj (wszystkie |poprzednie )?(instrukcje|polecenia)"
+  - "ignora (todas )?las instrucciones"
+  - "(you are|jesteś|eres) now"
+  - "(score|oceń|puntúa)[^.]{0,20}\\b100\\b"
+  - "save_score|save_offer_fields|write_report"
